@@ -22,7 +22,7 @@ template<class T>
 class Chain :public Link<T>
 {
 public:
-	Chain() {};
+	Chain() {}
 	Chain(Link<T>* p);
 	Chain(const Chain<T>&);
 	~Chain();
