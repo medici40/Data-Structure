@@ -26,6 +26,7 @@ public:
 	Chain(Link<T>* p);
 	Chain(const Chain<T>&);
 	~Chain();
+	Chain* GetHead() { return head; }
 	void Getsize() { cout << Listsize << endl; }
 	void empty() const { return Listsize == 0; }
 	void Insert(int p, T newelement);
