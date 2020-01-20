@@ -66,15 +66,15 @@ void arrayStack<T>::push(const T& newelement)
 }
 
 
+
 template<class T>
 class linkedStack :public Stack<T>
 {
 public:
-	linkedStack(T data, Link<T>* nextValue = NULL)
+	linkedStack()
 	{
-		this->top->element = data;
-		this->top->next = nextValue;
-		this->linked_size++;
+		top = NULL;
+		linked_size = 0;
 	}
 	~linkedStack();
 	bool empty()const;
@@ -84,8 +84,8 @@ public:
 	void pop();
 	void push(const T& newelement);
 private:
-	Link<T>* top=NULL;
-	int linked_size=0;
+	Link<T>* top;
+	int linked_size;
 };
 
 template<class T>
@@ -111,10 +111,11 @@ template<class T>
 int linkedStack<T>::size()const
 {
 	int i = 0;
-	while (top != NULL)
+	Link<T>* p = top;
+	while (p != NULL)
 	{
 		i++;
-		top = top->next;
+		p = p->next;
 	}
 	return i;
 }
@@ -149,6 +150,7 @@ void linkedStack<T>::pop()
 template<class T>
 void linkedStack<T>::push(const T& newelement)
 {
-	linkedStack* newtop = linkedStack(newelement, top);
+	Link<T>* newtop=new Link<T>(newelement, top);
 	top = newtop;
+	this->linked_size++;
 }
